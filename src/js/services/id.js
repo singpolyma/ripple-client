@@ -311,9 +311,14 @@ module.factory('rpId', ['$rootScope', '$location', '$route', '$routeParams',
 
     var username = Id.normalizeUsernameForDisplay(opts.username);
     var password = Id.normalizePassword(opts.password);
+    var loginName = Id.normalizeUsernameForInternals(opts.username);
+
+    if (loginName.indexOf('@') === -1) {
+      loginName += '@' + Options.domain;
+    }
 
     $authflow.login({
-      'username': Id.normalizeUsernameForInternals(username),
+      'username': loginName,
       'password': password,
       'walletfile': opts.walletfile
     }, function (err, blob, keys, actualUsername, emailVerified) {
@@ -368,8 +373,8 @@ module.factory('rpId', ['$rootScope', '$location', '$route', '$routeParams',
         // ensure the actualUsername returned is equivalent to what we expected
         // and fall back to what the user entered otherwise.
         if ("string" !== typeof actualUsername ||
-            Id.normalizeUsernameForInternals(actualUsername) !== Id.normalizeUsernameForInternals(username)) {
-          actualUsername = username;
+            Id.normalizeUsernameForInternals(actualUsername) !== loginName) {
+          actualUsername = loginName;
         }
 
         $scope.userBlob = blob;

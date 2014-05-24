@@ -33,7 +33,7 @@ module.factory('rpAuthFlow', ['$rootScope', 'rpAuthInfo', 'rpKdf', 'rpBlob',
               
       console.log("client: authflow: login succeeded", resp.blob);
       $scope.$apply(function(){
-        callback(null, resp.blob, keys, resp.username, resp.verified);    
+        callback(null, resp.blob, keys, resp.username + '@' + meta.domain, resp.verified);    
       });
     });
   };
@@ -71,7 +71,7 @@ module.factory('rpAuthFlow', ['$rootScope', 'rpAuthInfo', 'rpKdf', 'rpBlob',
               
       console.log("client: authflow: registration succeeded", resp.blob);
       $scope.$apply(function(){
-        callback(null, resp.blob, keys, resp.username);      
+        callback(null, resp.blob, keys, resp.username + '@' + meta.domain);
       });    
     });
   };
