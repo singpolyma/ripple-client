@@ -39,13 +39,16 @@ module.controller('NavbarCtrl', ['$scope', '$element', '$compile', 'rpId',
   }, true);
 
   // Username
-  $scope.$watch('userCredentials', function(){
+  function setShortUsername() {
     var username = $scope.userCredentials.username;
-    $scope.shortUsername = null;
     if(username && username.length > 25) {
       $scope.shortUsername = username.substring(0,24)+"...";
+    } else {
+      $scope.shortUsername = username;
     }
-  }, true);
+  }
+  setShortUsername();
+  $scope.$watch('userCredentials', setShortUsername, true);
 
   $scope.logout = function () {
     $id.logout();
