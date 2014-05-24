@@ -12,11 +12,11 @@ section.content(ng-controller='FundCtrl')
     div.auth-attention(ng-show="'web' === client && !account.Balance")
       h4(l10n) Welcome to Ripple Trade! To activate your account, you'll need at least 20 XRP.
       ul(l10n)
-        li(l10n-inc) Have another user send XRP to your Ripple name (~{{userCredentials.username}})
+        li(l10n-inc) Have another user send XRP to your Ripple name ({{userCredentials.username}})
         li(l10n-inc) Use the bitcoin funding flow. A small amount of your first deposit
           |  will be used to activate your account.
         li(l10n-inc) If your account remains unfunded for 30 days, you will no longer be
-          |  able to login using your Ripple name (~{{userCredentials.username}}).
+          |  able to login using your Ripple name ({{userCredentials.username}}).
           |  You'll need to sign up for a new Ripple name.
     .col-sm-3
       .currencies
@@ -28,14 +28,14 @@ section.content(ng-controller='FundCtrl')
       .fundXrp(ng-show="currencyPage == 'xrp'")
         div(ng-show="'web' === client")
           .nameLine(l10n) Ripple name:&#32;
-            span.name(ng-show="userCredentials.username") ~{{userCredentials.username}}
+            span.name(ng-show="userCredentials.username") {{userCredentials.username}}
             span(ng-hide="userCredentials.username", l10n) loading...
             .address
               a(href="", ng-click="showRippleAddress=true"
                 ng-hide="showRippleAddress", l10n-inc) Show address
               div(ng-show="showRippleAddress") {{address}}
           .description(l10n) Ripple names are a new feature on Ripple! Use your
-            | Ripple name (~{{userCredentials.username}}) to receive money.
+            | Ripple name ({{userCredentials.username}}) to receive money.
             | You can still use your full Ripple address, and while we are
             | working to transition to Ripple names, some gateways may still
             | ask for your full address.
