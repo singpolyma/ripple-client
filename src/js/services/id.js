@@ -316,7 +316,7 @@ module.factory('rpId', ['$rootScope', '$location', '$route', '$routeParams',
       'username': Id.normalizeUsernameForInternals(username),
       'password': password,
       'walletfile': opts.walletfile
-    }, function (err, blob, keys, actualUsername, emailVerified) {
+    }, function (err, blob, keys, actualUsername) {
       if (err && Options.blobvault) {
         console.log("Blob login failed, trying old blob protocol");
 
@@ -374,14 +374,6 @@ module.factory('rpId', ['$rootScope', '$location', '$route', '$routeParams',
 
         $scope.userBlob = blob;
         self.setUsername(actualUsername);
-
-        if (!emailVerified) {
-          $scope.unverified = true;
-          $location.path('/register');
-
-          callback(new Error("Email has not been verified!"));
-          return;
-        }
 
         self.setAccount(blob.data.account_id);
         self.setLoginKeys(keys);

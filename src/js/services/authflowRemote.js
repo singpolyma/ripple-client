@@ -32,7 +32,7 @@ module.factory('rpAuthFlow', ['$rootScope', 'rpAuthInfo', 'rpKdf', 'rpBlob',
               
       console.log("client: authflow: login succeeded", resp.blob);
       $scope.$apply(function(){
-        callback(null, resp.blob, keys, resp.username, resp.verified);    
+        callback(null, resp.blob, keys, resp.username);
       });
     });
   };
