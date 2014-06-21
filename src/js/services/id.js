@@ -257,11 +257,11 @@ module.factory('rpId', ['$rootScope', '$location', '$route', '$routeParams',
 
       self.setUsername(username);
 
-//      self.setAccount(blob.data.account_id);
-//      self.setLoginKeys(keys);
-//      self.storeLoginKeys(username, keys);
-//      self.loginStatus = true;
-//      $scope.$broadcast('$blobUpdate');
+      self.setAccount(blob.data.account_id);
+      self.setLoginKeys(keys);
+      self.storeLoginKeys(username, keys);
+      self.loginStatus = true;
+      $scope.$broadcast('$blobUpdate');
 
       if ('desktop' === $scope.client) {
         self.setAccount(blob.data.account_id);
